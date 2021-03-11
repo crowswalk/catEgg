@@ -133,7 +133,7 @@ public class MovePlayer : MonoBehaviour
             default:
                 break;
         }
-        Debug.Log("hit bg element: " + other.gameObject.name);
+        //Debug.Log("hit element: " + other.gameObject.name);
     }
 
 }

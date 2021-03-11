@@ -13,11 +13,16 @@ public class PlayerTriggers : MonoBehaviour
     int acornCount; //how many acorns the player has picked up
     int eggCount; //how many eggs player has picked up
 
+    public bool hasRod, hasBait;
+
     void Start() {
         thoughtBubble = transform.GetChild(0).gameObject;
         thoughtRenderer = thoughtBubble.GetComponent<SpriteRenderer>();
         hasBag = false;
         acornCount = 0;
+        eggCount = 0;
+        hasRod = false;
+        hasBait = false;
     }
 
     void OnTriggerStay2D(Collider2D other) {
