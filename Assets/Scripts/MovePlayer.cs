@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class MovePlayer : MonoBehaviour
 {
-    public float speed; //walking speed
+    public float speed;
     public float framerate; //frames per second (multiplied by deltaTime)
 
     public Sprite[] downSprite = new Sprite[1]; //set sprite arrays
@@ -21,8 +21,13 @@ public class MovePlayer : MonoBehaviour
     private directionState currentState; //inital direction state is none
     private SpriteRenderer sprRenderer; //to access & change sprite renderer
     private BoxCollider2D playerCollider;
+    private collisionDir currentDir;
 
     private enum directionState { //Direction states for translation
+        up, down, left, right, none
+    }
+
+    private enum collisionDir { //relative position of last collision
         up, down, left, right, none
     }
 
@@ -33,6 +38,7 @@ public class MovePlayer : MonoBehaviour
         stillSprite = downSprite[0];
         currentSprite = stillSprite;
         currentFrame = 0;
+
     }
 
     void FixedUpdate() { //called once per frame
@@ -90,4 +96,44 @@ public class MovePlayer : MonoBehaviour
                 break;
         }
     }
+
+    void OnCollisionEnter2D(Collision2D other) { //determine relative position of collision
+        switch (currentState) {
+            case directionState.up:
+                currentDir = collisionDir.up;
+            break;
+            case directionState.down:
+                currentDir = collisionDir.down;
+            break;
+            case directionState.left:
+                currentDir = collisionDir.left;
+            break;
+            case directionState.right:
+                currentDir = collisionDir.right;
+            break;
+            default:
+            break;
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D other) { //push back on collisions based on relative position
+                switch (currentDir) {
+            case collisionDir.up:
+                transform.Translate(Vector3.down * Time.deltaTime * speed);
+                break;
+            case collisionDir.down:
+                transform.Translate(Vector3.up * Time.deltaTime * speed);
+                break;
+            case collisionDir.left:
+                transform.Translate(Vector3.right * Time.deltaTime * speed);
+                break;
+            case collisionDir.right:
+                transform.Translate(Vector3.left * Time.deltaTime * speed);
+                break;
+            default:
+                break;
+        }
+        Debug.Log("hit bg element: " + other.gameObject.name);
+    }
+
 }

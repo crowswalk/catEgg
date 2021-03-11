@@ -44,11 +44,11 @@ Physics2DSettings:
   m_CallbacksOnDisable: 1
   m_ReuseCollisionCallbacks: 1
   m_AutoSyncTransforms: 0
-  m_AlwaysShowColliders: 0
+  m_AlwaysShowColliders: 1
   m_ShowColliderSleep: 0
-  m_ShowColliderContacts: 0
-  m_ShowColliderAABB: 0
-  m_ContactArrowScale: 0.27
+  m_ShowColliderContacts: 1
+  m_ShowColliderAABB: 1
+  m_ContactArrowScale: 0.155
   m_ColliderAwakeColor: {r: 1, g: 0.37647063, b: 0, a: 1}
   m_ColliderAsleepColor: {r: 1, g: 0.37647063, b: 0, a: 1}
   m_ColliderContactColor: {r: 1, g: 0, b: 1, a: 0.6862745}

@@ -10,6 +10,7 @@ TagManager:
   - Acorn
   - Chicken
   - Egg
+  - Fish
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Walkable
+  - BackgroundColliders
   - 
   - 
   - 
