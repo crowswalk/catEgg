@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: de536b4118d04ee48a608b56649a4ca4
+guid: f64e99073bed03844870c17dd0665ba0
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
   fontSize: 16
-  forceTextureCase: -2
+  forceTextureCase: -1
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: C&C Red Alert [INET]
+  fontName: Pixel UniCode
   fontNames:
-  - C&C Red Alert [INET]
+  - Pixel UniCode
   fallbackFontReferences: []
   customCharacters: 
-  fontRenderingMode: 0
+  fontRenderingMode: 2
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
   shouldRoundAdvanceValue: 1

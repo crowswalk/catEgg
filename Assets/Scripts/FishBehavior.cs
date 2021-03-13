@@ -6,7 +6,9 @@ public class FishBehavior : MonoBehaviour
 {
     public GameObject avoiding; //object to avoid (insert player)
     public float sightDist; //distance to cast the ray
-    public float moveSpeed; //speed at which fish moves to its destination
+    public float[] speedRange = new float[2];
+    private float moveSpeed; //speed at which fish moves to its destination
+    public float swimSpeed; // speed at which fish moves when it doesn't see player
 
     RaycastHit2D fishSight; //ray from fish to an object it is avoiding
     Vector2 thisPos; //position of fish (start of ray)
@@ -18,6 +20,11 @@ public class FishBehavior : MonoBehaviour
     private BoxCollider2D fishCollider; //box collider of fish
     private float colliderHeight, colliderWidth; //height and width of fish box collider
 
+    public int swimTime; //length of time between swim direction changes
+    private int swimTimer; //timer for swim direction changes
+    private int swimDir; //direction fish swims when it doesnt see player
+    private bool seesPlayer;
+
     void Start() {
         xMin = pondBounds.bounds.min.x; //left side of pond
         xMax = pondBounds.bounds.max.x; //right side of pond
@@ -25,8 +32,11 @@ public class FishBehavior : MonoBehaviour
         yMax = pondBounds.bounds.max.y; //bottom of pond
 
         fishCollider = this.GetComponent<BoxCollider2D>();
-        colliderWidth = fishCollider.transform.lossyScale.x / 2; //collider dimensions converted to world scale
-        colliderHeight = fishCollider.transform.lossyScale.y / 2;
+        colliderWidth = fishCollider.size.x; //collider dimensions converted to world scale
+        colliderHeight = fishCollider.size.y;
+        moveSpeed = UnityEngine.Random.Range(speedRange[0], speedRange[1]);
+        swimTimer = 0;
+        swimDir = 0;
     }
 
     void FixedUpdate() {
@@ -52,7 +62,6 @@ public class FishBehavior : MonoBehaviour
         avoidingPos = new Vector2(avoiding.transform.position.x, avoiding.transform.position.y); //position of avoiding
         fishSight = Physics2D.Raycast(thisPos, avoidingPos - thisPos, sightDist,  1 << LayerMask.NameToLayer("Walkable")); //continually cast ray based on avoiding's location
         PlayerTriggers playerStates = avoiding.GetComponent<PlayerTriggers>(); //track avoiding's states to see if they have rod or bait
-
         if(fishSight.collider != null) {
             if(fishSight.collider.tag == "Player") { //if fish sees player
                 Debug.Log("Fish sees player");
@@ -63,13 +72,54 @@ public class FishBehavior : MonoBehaviour
                         newPos = Vector2.MoveTowards(transform.position, avoidingPos, -moveSpeed); //fish are scared away by rod
                     }
                 }
+                Quaternion rotation = Quaternion.LookRotation //rotate to direction of player
+                (avoidingPos - thisPos, transform.TransformDirection(Vector3.up));
+                transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
             }
+        } else { //fish doesn't see anything
+            swimTimer++;
+            if (swimTimer >= swimTime) {
+                swimTimer = 0;
+                swimDir = UnityEngine.Random.Range(1, 7);
+            }
+            newPos = normalMove(swimDir); 
         }
         Debug.DrawRay(thisPos, avoidingPos - thisPos, Color.red); //fish line of sight
         return newPos;
     }
 
-//need a method for fish swimmin around minding their business
-//probably like... randomly generated direction change
+    void OnCollisionStay2D(Collision2D other) { //when fish overlap, they begin to separate
+        if (other.gameObject.tag == "Fish") {
+            Vector2 otherPos = other.gameObject.transform.position;
+            Vector2 thisPos = transform.position;
+            Vector2 newPos = thisPos - otherPos;
 
+            transform.position = Vector2.Lerp(thisPos, thisPos + newPos, moveSpeed * 5);
+            Debug.Log("Other fish: " + otherPos + " This Fish: " + thisPos + "\nNew Position: " + newPos);
+        }
+    }
+
+/*-----normalMove
+*Called from within seePlayer, when the fish doesn't see the player.
+*
+*Before calling, create a timer, and once the timer is complete, generate a number (1-4)
+*
+*@param dir, integer that indicates which direction to move in
+*/
+    Vector2 normalMove(int dir) {
+        Vector2 prevPos = transform.position;
+        Vector2 normPos = prevPos;
+        if (dir == 1) { //up
+            normPos += Vector2.up * Time.deltaTime * swimSpeed;
+        } else if (dir == 2) { //down
+            normPos += Vector2.down * Time.deltaTime * swimSpeed;
+        } else if (dir == 3) { //left
+            normPos += Vector2.left * Time.deltaTime * swimSpeed;
+        } else if (dir == 4) { //right
+            normPos += Vector2.right * Time.deltaTime * swimSpeed;
+        }
+        Debug.Log("Norm Pos: " + normPos);
+
+        return normPos;
+    }
 }
