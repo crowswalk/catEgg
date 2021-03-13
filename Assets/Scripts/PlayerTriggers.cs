@@ -12,6 +12,7 @@ public class PlayerTriggers : MonoBehaviour
     bool hasBag; //whether the player has picked up acorn-carrying bag
     int acornCount; //how many acorns the player has picked up
     int eggCount; //how many eggs player has picked up
+    int fishCount;
 
     public bool hasRod, hasBait;
 
@@ -21,6 +22,7 @@ public class PlayerTriggers : MonoBehaviour
         hasBag = false;
         acornCount = 0;
         eggCount = 0;
+        fishCount = 0;
         hasRod = false;
         hasBait = false;
     }
@@ -53,6 +55,10 @@ public class PlayerTriggers : MonoBehaviour
                 sprRenderer.enabled = false;
                 eggCount++;
                 Destroy(otherObj);
+            }
+            if (otherObj.tag == "FishCollider" && hasBait) {
+                fishCount++;
+                Destroy(otherObj.transform.parent.gameObject);
             }
      }
 

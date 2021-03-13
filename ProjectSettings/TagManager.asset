@@ -12,6 +12,7 @@ TagManager:
   - Egg
   - Fish
   - Dialogue
+  - FishCollider
   layers:
   - Default
   - TransparentFX

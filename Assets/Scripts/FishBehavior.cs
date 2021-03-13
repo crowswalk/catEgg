@@ -23,7 +23,9 @@ public class FishBehavior : MonoBehaviour
     public int swimTime; //length of time between swim direction changes
     private int swimTimer; //timer for swim direction changes
     private int swimDir; //direction fish swims when it doesnt see player
-    private bool seesPlayer;
+
+    public Sprite[] dirs = new Sprite[3];
+    private SpriteRenderer fishSprite;
 
     void Start() {
         xMin = pondBounds.bounds.min.x; //left side of pond
@@ -31,6 +33,7 @@ public class FishBehavior : MonoBehaviour
         yMin = pondBounds.bounds.min.y; //top of pond
         yMax = pondBounds.bounds.max.y; //bottom of pond
 
+        fishSprite = this.GetComponent<SpriteRenderer>();
         fishCollider = this.GetComponent<BoxCollider2D>();
         colliderWidth = fishCollider.size.x; //collider dimensions converted to world scale
         colliderHeight = fishCollider.size.y;
@@ -64,17 +67,17 @@ public class FishBehavior : MonoBehaviour
         PlayerTriggers playerStates = avoiding.GetComponent<PlayerTriggers>(); //track avoiding's states to see if they have rod or bait
         if(fishSight.collider != null) {
             if(fishSight.collider.tag == "Player") { //if fish sees player
-                Debug.Log("Fish sees player");
                 if (playerStates.hasRod) { //check if the player has fishing rod
                     if(playerStates.hasBait) { //check if the player has fish bait
                         newPos = Vector2.MoveTowards(transform.position, avoidingPos, moveSpeed); //fish are attracted to rod with bait
                     } else {
                         newPos = Vector2.MoveTowards(transform.position, avoidingPos, -moveSpeed); //fish are scared away by rod
                     }
+                    fishSprite.sprite = dirs[0];
+                    Quaternion rotation = Quaternion.LookRotation //rotate to direction of player
+                    (avoidingPos - thisPos, transform.TransformDirection(Vector3.up));
+                    transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
                 }
-                Quaternion rotation = Quaternion.LookRotation //rotate to direction of player
-                (avoidingPos - thisPos, transform.TransformDirection(Vector3.up));
-                transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
             }
         } else { //fish doesn't see anything
             swimTimer++;
@@ -107,19 +110,26 @@ public class FishBehavior : MonoBehaviour
 *@param dir, integer that indicates which direction to move in
 */
     Vector2 normalMove(int dir) {
+        transform.rotation = new Quaternion(0, 0, 0, 0);
         Vector2 prevPos = transform.position;
         Vector2 normPos = prevPos;
         if (dir == 1) { //up
             normPos += Vector2.up * Time.deltaTime * swimSpeed;
+            fishSprite.sprite = dirs[2];
         } else if (dir == 2) { //down
             normPos += Vector2.down * Time.deltaTime * swimSpeed;
+            fishSprite.sprite = dirs[0];
         } else if (dir == 3) { //left
             normPos += Vector2.left * Time.deltaTime * swimSpeed;
+            fishSprite.sprite = dirs[1];
+            fishSprite.flipX = false;
         } else if (dir == 4) { //right
             normPos += Vector2.right * Time.deltaTime * swimSpeed;
+            fishSprite.sprite = dirs[1];
+            fishSprite.flipX = true;
+        } else {
+            fishSprite.sprite = dirs[0];
         }
-        Debug.Log("Norm Pos: " + normPos);
-
         return normPos;
     }
 }
