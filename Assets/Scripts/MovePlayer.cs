@@ -13,6 +13,7 @@ public class MovePlayer : MonoBehaviour
     public Sprite[] downSprite = new Sprite[1]; //set sprite arrays
     public Sprite[] upSprite = new Sprite[1];
     public Sprite[] sideSprite = new Sprite[1];
+    public Sprite[] fishSprites = new Sprite[3];
 
     private Sprite currentSprite; //currently displayed sprite
     private Sprite stillSprite; //sprite to use when you stop walking
@@ -22,6 +23,8 @@ public class MovePlayer : MonoBehaviour
     private SpriteRenderer sprRenderer; //to access & change sprite renderer
     private BoxCollider2D playerCollider;
     private collisionDir currentDir;
+    private bool nearPond;
+    private Sprite fishingSprite;
 
     private enum directionState { //Direction states for translation
         up, down, left, right, none
@@ -38,7 +41,8 @@ public class MovePlayer : MonoBehaviour
         stillSprite = downSprite[0];
         currentSprite = stillSprite;
         currentFrame = 0;
-
+        nearPond = false;
+        fishingSprite = fishSprites[0];
     }
 
     void FixedUpdate() { //called once per frame
@@ -58,7 +62,11 @@ public class MovePlayer : MonoBehaviour
             currentState = directionState.right;
         } else { //STILL
             currentState = directionState.none;
-            currentSprite = stillSprite;
+            if (nearPond && GetComponent<PlayerTriggers>().hasRod) {
+                currentSprite = fishingSprite;
+            } else {
+                currentSprite = stillSprite;
+            }
         }
     }
 
@@ -77,20 +85,24 @@ public class MovePlayer : MonoBehaviour
             case directionState.up:
                 transform.Translate(Vector3.up * Time.deltaTime * speed);
                 walkCycle(upSprite);
+                fishingSprite = fishSprites[1];
                 break;
             case directionState.down:
                 transform.Translate(Vector3.down * Time.deltaTime * speed);
                 walkCycle(downSprite);
+                fishingSprite = fishSprites[0];
                 break;
             case directionState.left:
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
                 walkCycle(sideSprite);
                 sprRenderer.flipX = false;
+                fishingSprite = fishSprites[2];
                 break;
             case directionState.right:
                 transform.Translate(Vector3.right * Time.deltaTime * speed);
                 walkCycle(sideSprite);
                 sprRenderer.flipX = true;
+                fishingSprite = fishSprites[2];
                 break;
             default:
                 break;
@@ -132,6 +144,18 @@ public class MovePlayer : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.name == "HoldRod") {
+            nearPond = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other) {
+        if(other.gameObject.name == "HoldRod") {
+            nearPond = false;
         }
     }
 

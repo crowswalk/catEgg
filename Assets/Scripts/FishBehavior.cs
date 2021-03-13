@@ -23,6 +23,7 @@ public class FishBehavior : MonoBehaviour
     public int swimTime; //length of time between swim direction changes
     private int swimTimer; //timer for swim direction changes
     private int swimDir; //direction fish swims when it doesnt see player
+    private bool dodgeBuffer; //buffer between swimming away from player and normal swim (prevent jitter)
 
     public Sprite[] dirs = new Sprite[3];
     private SpriteRenderer fishSprite;
@@ -40,6 +41,7 @@ public class FishBehavior : MonoBehaviour
         moveSpeed = UnityEngine.Random.Range(speedRange[0], speedRange[1]);
         swimTimer = 0;
         swimDir = 0;
+        dodgeBuffer = false;
     }
 
     void FixedUpdate() {
@@ -65,30 +67,79 @@ public class FishBehavior : MonoBehaviour
         avoidingPos = new Vector2(avoiding.transform.position.x, avoiding.transform.position.y); //position of avoiding
         fishSight = Physics2D.Raycast(thisPos, avoidingPos - thisPos, sightDist,  1 << LayerMask.NameToLayer("Walkable")); //continually cast ray based on avoiding's location
         PlayerTriggers playerStates = avoiding.GetComponent<PlayerTriggers>(); //track avoiding's states to see if they have rod or bait
+
         if(fishSight.collider != null) {
             if(fishSight.collider.tag == "Player") { //if fish sees player
                 if (playerStates.hasRod) { //check if the player has fishing rod
                     if(playerStates.hasBait) { //check if the player has fish bait
                         newPos = Vector2.MoveTowards(transform.position, avoidingPos, moveSpeed); //fish are attracted to rod with bait
+                        rotateFish(true);
                     } else {
                         newPos = Vector2.MoveTowards(transform.position, avoidingPos, -moveSpeed); //fish are scared away by rod
+                        swimTimer++;
+                        if (swimTimer >= swimTime / 3) { //rotate sprite on a timer to prevent jitter
+                            rotateFish(false);
+                            swimTimer = 0;
+                        }
+                        dodgeBuffer = true;
                     }
-                    fishSprite.sprite = dirs[0];
-                    Quaternion rotation = Quaternion.LookRotation //rotate to direction of player
-                    (avoidingPos - thisPos, transform.TransformDirection(Vector3.up));
-                    transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
                 }
             }
         } else { //fish doesn't see anything
             swimTimer++;
-            if (swimTimer >= swimTime) {
+            if (swimTimer >= swimTime) { //end of timer
                 swimTimer = 0;
-                swimDir = UnityEngine.Random.Range(1, 7);
+                if (dodgeBuffer) { //if fish has just seen player, move away from player a little, but don't move otherwise.
+                    swimDir = 7;
+                    newPos = Vector2.MoveTowards(transform.position, avoidingPos, -moveSpeed); //fish are scared away by rod
+                    dodgeBuffer = false;
+                    Debug.Log("Dodge buffer");
+                } else {
+                    swimDir = UnityEngine.Random.Range(1, 7);
+                }
             }
             newPos = normalMove(swimDir); 
         }
         Debug.DrawRay(thisPos, avoidingPos - thisPos, Color.red); //fish line of sight
         return newPos;
+    }
+
+/*-----rotateFish
+*sees where player is in relation to pond. when fish is swimming towards/away, rotate sprite in correct direction
+*
+*@param seeBait whether fish is swimming toward bait
+*/
+    void rotateFish(bool seeBait) {
+        float playerX = avoiding.transform.position.x;
+        float playerY = avoiding.transform.position.y;
+        //by default, go toward player. override if player doesn't have bait
+        if (playerX > xMin && playerX < xMax) { //player is either above or below pond
+            if (playerY < yMin) { //player is above pond
+                fishSprite.sprite = dirs[0];
+                if (!seeBait) { //swimming away
+                    fishSprite.sprite = dirs[2];
+                }
+            } else { //player is below pond
+                fishSprite.sprite = dirs[2];
+                if (!seeBait) { //swimming away
+                    fishSprite.sprite = dirs[0];
+                }
+            }
+        } else if (playerY > yMin && playerY < yMax) { //player is either to the left or right of pond
+            if (playerX < xMin) { //player is left of pond
+                fishSprite.sprite = dirs[1];
+                fishSprite.flipX = false;
+                if(!seeBait) { //swimming away
+                    fishSprite.flipX = true;
+                }
+            } else { //player is right of pond
+                fishSprite.sprite = dirs[1];
+                fishSprite.flipX = true;
+                if(!seeBait) { //swimming away
+                    fishSprite.flipX = false;
+                }
+            }
+        }
     }
 
     void OnCollisionStay2D(Collision2D other) { //when fish overlap, they begin to separate
@@ -97,8 +148,8 @@ public class FishBehavior : MonoBehaviour
             Vector2 thisPos = transform.position;
             Vector2 newPos = thisPos - otherPos;
 
-            transform.position = Vector2.Lerp(thisPos, thisPos + newPos, moveSpeed * 5);
-            Debug.Log("Other fish: " + otherPos + " This Fish: " + thisPos + "\nNew Position: " + newPos);
+            transform.position = Vector2.Lerp(thisPos, thisPos + newPos, moveSpeed);
+            //Debug.Log("Other fish: " + otherPos + " This Fish: " + thisPos + "\nNew Position: " + newPos);
         }
     }
 
