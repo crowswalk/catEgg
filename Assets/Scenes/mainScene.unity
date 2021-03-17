@@ -1391,7 +1391,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -5281422124547630143, guid: f7ea16742fa1b1e4d94ec97576b4fe1b,
+  m_Sprite: {fileID: 6761164967045977113, guid: b485357096ba1c245b12e9abb76a2b42,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1444,8 +1444,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chestSprites:
-  - {fileID: -5281422124547630143, guid: f7ea16742fa1b1e4d94ec97576b4fe1b, type: 3}
-  - {fileID: 4714410783012859700, guid: f7ea16742fa1b1e4d94ec97576b4fe1b, type: 3}
+  - {fileID: 6761164967045977113, guid: b485357096ba1c245b12e9abb76a2b42, type: 3}
+  - {fileID: 5508725064705088119, guid: b485357096ba1c245b12e9abb76a2b42, type: 3}
   currentSprite: {fileID: 0}
 --- !u!4 &967047171 stripped
 Transform:
@@ -3588,16 +3588,6 @@ PrefabInstance:
     - target: {fileID: 5679036050077734550, guid: a7a898e3c49ba0e438a3219af324db92,
         type: 3}
       propertyPath: m_Name
-      value: Acorn
-      objectReference: {fileID: 0}
-    - target: {fileID: 5679036050077734550, guid: a7a898e3c49ba0e438a3219af324db92,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5679036050077734550, guid: a7a898e3c49ba0e438a3219af324db92,
-        type: 3}
-      propertyPath: m_TagString
       value: Acorn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
