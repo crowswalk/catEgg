@@ -17,7 +17,7 @@ Clicking the items adds them to your inventory.
 * Your CAT is HUNGRY. You need to FISH from the POND. 
 * The FISH are avoiding you because you need BAIT.
 * For BAIT you need EGGS. Feed ACORNS to the CHICKENS.
-* You need COAL. I'll give you some.
+* You need COAL. Neighbor will give you some.
 * You need to cook the EGGS with the COAL at your FURNACE.
 
 ## To Do:
