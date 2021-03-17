@@ -20,6 +20,33 @@ TextureImporter:
   - first:
       213: 5865078278364869351
     second: player_5
+  - first:
+      213: -2023923573111878767
+    second: player_6
+  - first:
+      213: -540375121143967267
+    second: player_7
+  - first:
+      213: -1205440766039775075
+    second: player_8
+  - first:
+      213: 5602337906906987636
+    second: player_9
+  - first:
+      213: -3861952770410913445
+    second: player_10
+  - first:
+      213: 5044450397378941176
+    second: player_11
+  - first:
+      213: 1871739406167786269
+    second: player_12
+  - first:
+      213: 6426868497666326525
+    second: player_13
+  - first:
+      213: -2418196558428526619
+    second: player_14
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -120,12 +147,12 @@ TextureImporter:
       name: player_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 26
-        width: 13
-        height: 21
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1
+        y: 68.5
+        width: 15
+        height: 21.5
+      alignment: 9
+      pivot: {x: 0.49670208, y: 0.0897341}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,12 +168,12 @@ TextureImporter:
       name: player_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 26
-        width: 13
-        height: 21
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 17
+        y: 68.5
+        width: 15
+        height: 21.5
+      alignment: 9
+      pivot: {x: 0.49670208, y: 0.041415546}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -162,12 +189,12 @@ TextureImporter:
       name: player_2
       rect:
         serializedVersion: 2
-        x: 30
-        y: 26
-        width: 13
-        height: 21
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 33
+        y: 68.5
+        width: 15
+        height: 21.5
+      alignment: 9
+      pivot: {x: 0.49670208, y: 0.0897341}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -183,12 +210,12 @@ TextureImporter:
       name: player_3
       rect:
         serializedVersion: 2
-        x: 2
-        y: 2
-        width: 13
-        height: 21
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 49
+        y: 68.5
+        width: 15
+        height: 21.5
+      alignment: 9
+      pivot: {x: 0.5032979, y: 0.048318196}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -204,12 +231,12 @@ TextureImporter:
       name: player_4
       rect:
         serializedVersion: 2
-        x: 16
-        y: 2
-        width: 13
-        height: 21
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1
+        y: 46.5
+        width: 15
+        height: 21.5
+      alignment: 9
+      pivot: {x: 0.49010625, y: 0.08973392}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -225,12 +252,12 @@ TextureImporter:
       name: player_5
       rect:
         serializedVersion: 2
-        x: 30
-        y: 2
-        width: 17
-        height: 21
+        x: 17
+        y: 46.5
+        width: 15
+        height: 21.5
       alignment: 9
-      pivot: {x: 0.62, y: 0}
+      pivot: {x: 0.5, y: 0.04371661}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -238,6 +265,195 @@ TextureImporter:
       bones: []
       spriteID: 7e23cc1ae91f46150800000000000000
       internalID: 5865078278364869351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_6
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 46.5
+        width: 15
+        height: 21.5
+      alignment: 9
+      pivot: {x: 0.5032979, y: 0.08743304}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19b8024cb3499e3e0800000000000000
+      internalID: -2023923573111878767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_7
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 46.5
+        width: 15
+        height: 21.5
+      alignment: 9
+      pivot: {x: 0.5032979, y: 0.04371661}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd151cab0b33088f0800000000000000
+      internalID: -540375121143967267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_8
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 24.5
+        width: 15
+        height: 21.5
+      alignment: 9
+      pivot: {x: 0.50000006, y: 0.036295958}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d98ac6e820a654fe0800000000000000
+      internalID: -1205440766039775075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_9
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 24.5
+        width: 15
+        height: 21.5
+      alignment: 9
+      pivot: {x: 0.5120056, y: 0.041879963}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47c75e4d4a08fbd40800000000000000
+      internalID: 5602337906906987636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_10
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 24.5
+        width: 15
+        height: 21.5
+      alignment: 9
+      pivot: {x: 0.50400186, y: 0.044671968}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b516254ba66976ac0800000000000000
+      internalID: -3861952770410913445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_11
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 24
+        width: 15
+        height: 22
+      alignment: 9
+      pivot: {x: 0.50400186, y: 0.07367065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f099d6e8ec710640800000000000000
+      internalID: 5044450397378941176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 15
+        height: 22
+      alignment: 9
+      pivot: {x: 0.49681816, y: 0.06074511}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d134bb0b211c9f910800000000000000
+      internalID: 1871739406167786269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_13
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1
+        width: 15
+        height: 22
+      alignment: 9
+      pivot: {x: 0.4983327, y: 0.054132354}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dffbc8df8d2d03950800000000000000
+      internalID: 6426868497666326525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_14
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.3929966, y: 0.058185533}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e7abc1da07d07ed0800000000000000
+      internalID: -2418196558428526619
       vertices: []
       indices: 
       edges: []

@@ -22,8 +22,8 @@ Clicking the items adds them to your inventory.
 
 ## To Do:
 #### (3/15):
-- [ ] Character sprites: player, neighbor, chicken, fish
-- [ ] Object sprites: chest, fishing rod, bag, acorn, egg, coal, bait, furnace, neighbor's coal pile
+- [ ] Character sprites: ~~player~~, neighbor, ~~chicken~~, fish
+- [x] Object sprites: chest, fishing rod, bag, acorn, egg, coal, bait, furnace, neighbor's coal bag
 - [ ] Background placeholder sprites & box colliders
 
 - [ ] Thought bubble state machine

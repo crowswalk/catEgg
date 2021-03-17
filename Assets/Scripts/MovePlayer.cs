@@ -70,16 +70,24 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    void walkCycle(Sprite[] dir) {
+/***
+*walkCycle animates sprite.
+*adds to a counter that determines when to change the sprite (this is convoluted, I'll simplify it later)
+*trying to find the best way to be able to set framerate without it skipping certain sprites at some framerates.
+*/
+    void walkCycle(Sprite[] dir) { 
         stillSprite = dir[0];
         if ((int)currentFrame < dir.Length) {
-            currentSprite = dir[(int)currentFrame];
+            currentSprite = dir[(int)currentFrame]; //change sprite
         } else {
             currentFrame = 0;
         }
         currentFrame += Time.deltaTime * framerate; //add frames per second
     }
 
+/***
+*moveMe: tracks directionState, translates player based on this, and uses animation script
+*/
     void moveMe() { //Check movement state & move character, animate sprite
         switch (currentState) {
             case directionState.up:
@@ -95,13 +103,13 @@ public class MovePlayer : MonoBehaviour
             case directionState.left:
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
                 walkCycle(sideSprite);
-                sprRenderer.flipX = false;
+                sprRenderer.flipX = true; 
                 fishingSprite = fishSprites[2];
                 break;
             case directionState.right:
                 transform.Translate(Vector3.right * Time.deltaTime * speed);
                 walkCycle(sideSprite);
-                sprRenderer.flipX = true;
+                sprRenderer.flipX = false;
                 fishingSprite = fishSprites[2];
                 break;
             default:
@@ -109,6 +117,9 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
+/***
+*Tracks which direction the player was going in before collision (determines direction of collision pushback)
+*/
     void OnCollisionEnter2D(Collision2D other) { //determine relative position of collision
         switch (currentState) {
             case directionState.up:
@@ -128,6 +139,9 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
+/***
+*keeps track of collision dir set in oncollisionEnter, pushes back against player's normal transform
+*/
     void OnCollisionStay2D(Collision2D other) { //push back on collisions based on relative position
                 switch (currentDir) {
             case collisionDir.up:
