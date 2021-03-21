@@ -20,29 +20,15 @@ Clicking the items adds them to your inventory.
 * You need COAL. Neighbor will give you some.
 * You need to cook the EGGS with the COAL at your FURNACE.
 
-## To Do:
-#### (3/15):
-- [x] Character sprites: player, neighbor, chicken, fish
-- [x] Object sprites: chest, fishing rod, bag, acorn, egg, coal, bait, furnace, neighbor's coal bag
-- [x] Background placeholder sprites & box colliders
-
-- [x] Thought bubble state machine
-- [x] Thought bubble script
-
-- [x] NPC speech bubble/state machine (offering Coal).
-
-- [x] Gathering coal mechanic
-- [x] Cooking mechanic
-
-#### (3/22):
-##### BUGS/ISSUES TO FIX: 
+## To Do (3/22):
+#### BUGS/ISSUES TO FIX: 
 - [ ] jitter when fish swim away
 - [ ] key disappears from cat's necklace before protag says they'll take it
 - [ ] interactions happen too fast (i.e. the fish are caught very quickly, bait is cooked instantaneously)
 - [ ] Need visual feedback for when player picks coal from bag
 - [ ] chickens don't always poop out the egg in the right direction, if at all. (Note: the player still gains an egg after feeding the chicken, but the sprite isn't always visible)
 
-##### Final additions:
+#### Final additions:
 - [ ] Giving fish to cat & ending cutscene
 - [ ] Background sprites
 
