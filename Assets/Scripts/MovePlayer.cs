@@ -34,6 +34,8 @@ public class MovePlayer : MonoBehaviour
         up, down, left, right, none
     }
 
+    private PlayerTriggers states;
+
     void Start() { //called before the first frame update
         sprRenderer = GetComponent < SpriteRenderer > ();
         playerCollider = GetComponent < BoxCollider2D > ();
@@ -43,12 +45,15 @@ public class MovePlayer : MonoBehaviour
         currentFrame = 0;
         nearPond = false;
         fishingSprite = fishSprites[0];
+        states = GetComponent<PlayerTriggers>();
     }
 
     void FixedUpdate() { //called once per frame
         sprRenderer.sprite = currentSprite; //show sprite that was calculated in walkCycle
         checkKey(); //check key input
-        moveMe(); //move/change sprite based on key input
+        if(!states.inDialogue) {
+            moveMe(); //move/change sprite based on key input
+        }
     }
 
     void checkKey() { //Check input & set movement state

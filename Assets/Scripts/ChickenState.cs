@@ -19,7 +19,7 @@ public class ChickenState : MonoBehaviour
     public float speed;
     public float framerate; //frames per second (multiplied by deltaTime)
     private int timer;
-    private int chickenDir;
+    public int chickenDir;
     private SpriteRenderer chickSprite;
 
     public Sprite[] chickSprites;

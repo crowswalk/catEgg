@@ -8,6 +8,7 @@ public class CatState : MonoBehaviour
     public Sprite[] bubbleSprites = new Sprite[2];
     public enum objState {hungry, happy};
     public objState currentState;
+    public Sprite noKeySprite;
 
     void Start() {
         currentState = objState.hungry;

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2039139677280793734}
   - component: {fileID: 2039139677280793735}
   - component: {fileID: 717336458}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Chicken
   m_TagString: Chicken
   m_Icon: {fileID: 0}
@@ -74,12 +74,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 46c16da0911218a47b1f0e03ec74f893, type: 3}
+  m_Sprite: {fileID: 5336855417275088078, guid: 46c16da0911218a47b1f0e03ec74f893,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.22, y: 0.18}
+  m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -98,18 +99,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009524465, y: 0.033985317}
+  m_Offset: {x: 0.00007522851, y: 0.034054488}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.22, y: 0.18}
-    newSize: {x: 0.22, y: 0.18}
+    oldSize: {x: 0.15, y: 0.12}
+    newSize: {x: 0.15, y: 0.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.11316085, y: 0.06853354}
+  m_Size: {x: 0.089694604, y: 0.07191825}
   m_EdgeRadius: 0
 --- !u!114 &2039139677280793735
 MonoBehaviour:
@@ -141,8 +142,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 25d03bf65df78b945b1a86c72a553dda, type: 3}
   - {fileID: 21300000, guid: 9e15a0f9a9325224787d62cb15e1775f, type: 3}
   currentState: 0
+  sideSprite:
+  - {fileID: 5336855417275088078, guid: 46c16da0911218a47b1f0e03ec74f893, type: 3}
+  - {fileID: -1433109330887674863, guid: 46c16da0911218a47b1f0e03ec74f893, type: 3}
+  - {fileID: -1642514149361250337, guid: 46c16da0911218a47b1f0e03ec74f893, type: 3}
+  - {fileID: -6988750562667468047, guid: 46c16da0911218a47b1f0e03ec74f893, type: 3}
   egg: {fileID: 3461536363907406124, guid: a511448ba407e0045b059c36e2dd8665, type: 3}
   eggLayOffset: 0.01
+  moveTimer: 100
+  speed: 0.2
+  framerate: 10
+  chickSprites: []
+  penBounds: {fileID: 0}
 --- !u!1 &2039139677299688977
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +165,7 @@ GameObject:
   - component: {fileID: 2039139677299688976}
   - component: {fileID: 2039139677299688979}
   - component: {fileID: 899816723}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: ChickenBubble
   m_TagString: Bubble
   m_Icon: {fileID: 0}
@@ -169,7 +180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039139677299688977}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.094, y: 0.19, z: 0}
+  m_LocalPosition: {x: 0, y: 0.129, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2039139677280793736}

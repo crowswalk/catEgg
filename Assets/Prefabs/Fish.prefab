@@ -236,7 +236,7 @@ MonoBehaviour:
   sightDist: 0.5
   speedRange:
   - 0.004
-  - 0.006
+  - 0.008
   swimSpeed: 0.04
   pondBounds: {fileID: 0}
   swimTime: 100
