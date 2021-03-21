@@ -22,19 +22,27 @@ Clicking the items adds them to your inventory.
 
 ## To Do:
 #### (3/15):
-- [ ] Character sprites: ~~player~~, neighbor, ~~chicken~~, fish
+- [x] Character sprites: player, neighbor, chicken, fish
 - [x] Object sprites: chest, fishing rod, bag, acorn, egg, coal, bait, furnace, neighbor's coal bag
-- [ ] Background placeholder sprites & box colliders
+- [x] Background placeholder sprites & box colliders
 
-- [ ] Thought bubble state machine
-- [ ] Thought bubble script
+- [x] Thought bubble state machine
+- [x] Thought bubble script
 
-- [ ] NPC speech bubble/state machine (offering Coal).
+- [x] NPC speech bubble/state machine (offering Coal).
 
-- [ ] Gathering coal mechanic
-- [ ] Cooking mechanic
+- [x] Gathering coal mechanic
+- [x] Cooking mechanic
 
 #### (3/22):
-- [ ] Giving fish to cat & cutscene
+##### BUGS/ISSUES TO FIX: 
+- [ ] jitter when fish swim away
+- [ ] key disappears from cat's necklace before protag says they'll take it
+- [ ] interactions happen too fast (i.e. the fish are caught very quickly, bait is cooked instantaneously)
+- [ ] Need visual feedback for when player picks coal from bag
+- [ ] chickens don't always poop out the egg in the right direction, if at all. (Note: the player still gains an egg after feeding the chicken, but the sprite isn't always visible)
+
+##### Final additions:
+- [ ] Giving fish to cat & ending cutscene
 - [ ] Background sprites
 
