@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LayerSorter : MonoBehaviour
+public class BackgroundSorter : MonoBehaviour
 {
     private SpriteRenderer sprRenderer; //to access & change sprite renderer
     public int sorter; //variable determines sprite's order in layer
@@ -14,12 +14,8 @@ public class LayerSorter : MonoBehaviour
         sorter = -(int)(transform.position.y * 10.0);
     }
 
-    void FixedUpdate() {
+        void FixedUpdate() {
         ypos = transform.position.y;
-        if (gameObject.tag == "Player") {
-            ypos -= .05f;
-            Debug.Log("player");
-        }
         sorter = -(int)(ypos * 10.0);
         sprRenderer.sortingOrder = sorter;
     }
