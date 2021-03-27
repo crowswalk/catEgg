@@ -70,20 +70,21 @@ public class FishBehavior : MonoBehaviour
 
         if(fishSight.collider != null) {
             if(fishSight.collider.tag == "Player") { //if fish sees player
-                if (playerStates.hasRod) { //check if the player has fishing rod
-                    if(playerStates.hasBait) { //check if the player has fish bait
+                    if(playerStates.currentState == PlayerTriggers.playerState.hasBait && playerStates.fishLike) { //If the player has bait, fish are attracted
                         newPos = Vector2.MoveTowards(transform.position, avoidingPos, moveSpeed); //fish are attracted to rod with bait
                         rotateFish(true);
-                    } else {
-                        newPos = Vector2.MoveTowards(transform.position, avoidingPos, -moveSpeed); //fish are scared away by rod
+
+                    } else if (playerStates.fishScare) { //if the player only has the rod, fish are scared away
+                        newPos = Vector2.MoveTowards(transform.position, avoidingPos, -moveSpeed);
                         swimTimer++;
+
                         if (swimTimer >= swimTime / 3) { //rotate sprite on a timer to prevent jitter
                             rotateFish(false);
                             swimTimer = 0;
                         }
                         dodgeBuffer = true;
                     }
-                }
+
             }
         } else { //fish doesn't see anything
             swimTimer++;
@@ -93,7 +94,6 @@ public class FishBehavior : MonoBehaviour
                     swimDir = 7;
                     newPos = Vector2.MoveTowards(transform.position, avoidingPos, -moveSpeed); //fish are scared away by rod
                     dodgeBuffer = false;
-                    Debug.Log("Dodge buffer");
                 } else {
                     swimDir = UnityEngine.Random.Range(1, 7);
                 }
@@ -149,13 +149,11 @@ public class FishBehavior : MonoBehaviour
             Vector2 newPos = thisPos - otherPos;
 
             transform.position = Vector2.Lerp(thisPos, thisPos + newPos, moveSpeed);
-            //Debug.Log("Other fish: " + otherPos + " This Fish: " + thisPos + "\nNew Position: " + newPos);
         }
     }
 
 /*-----normalMove
 *Called from within seePlayer, when the fish doesn't see the player.
-*
 *Before calling, create a timer, and once the timer is complete, generate a number (1-4)
 *
 *@param dir, integer that indicates which direction to move in

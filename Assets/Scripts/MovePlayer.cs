@@ -67,10 +67,14 @@ public class MovePlayer : MonoBehaviour
             currentState = directionState.right;
         } else { //STILL
             currentState = directionState.none;
-            if (nearPond && GetComponent<PlayerTriggers>().hasRod) {
-                currentSprite = fishingSprite;
-            } else {
-                currentSprite = stillSprite;
+            currentSprite = stillSprite;
+            if (nearPond) {
+                PlayerTriggers triggers = GetComponent<PlayerTriggers>();
+                if (triggers.hasRod) {
+                    if (triggers.inDialogue || triggers.fishLike) {
+                        currentSprite = fishingSprite;
+                    }
+                }
             }
         }
     }

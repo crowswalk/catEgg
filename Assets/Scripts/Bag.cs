@@ -17,14 +17,17 @@ public class Bag : MonoBehaviour {
     }
 
     void OnMouseOver() {
-        renderer.color = hoverColor;
-        chest.currentSprite = chest.chestSprites[1];
-        if (Input.GetMouseButtonDown(0)) {
-            player.hasBag = true;
-            renderer.enabled = false;
-            chest.currentSprite = chest.chestSprites[0];
-            Destroy(this);
+        if (player.currentState == PlayerTriggers.playerState.needBag) {
+            renderer.color = hoverColor;
+            chest.currentSprite = chest.chestSprites[1];
+            if (Input.GetMouseButtonDown(0)) {
+                player.hasBag = true;
+                renderer.enabled = false;
+                chest.currentSprite = chest.chestSprites[0];
+                Destroy(this);
+            }
         }
+
     }
 
     void OnMouseExit() {

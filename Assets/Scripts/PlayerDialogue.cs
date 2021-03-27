@@ -45,6 +45,7 @@ public class PlayerDialogue : MonoBehaviour
         } else {
             thoughtIndex = 0;
             thoughtBubble.SetActive(false);
+            states.inDialogue = false;
         }
     }
 

@@ -18,7 +18,7 @@ public class Bait : MonoBehaviour
     void OnMouseOver() {
         renderer.color = hoverColor;
         if (Input.GetMouseButtonDown(0)) {
-            player.hasBait = true;
+            player.currentState = PlayerTriggers.playerState.hasBait;
             renderer.enabled = false;
             Destroy(this.transform.parent.gameObject);
         }
