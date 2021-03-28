@@ -11,7 +11,7 @@ public class NeighborDialogue : MonoBehaviour
 
     public int speechIndex;
 
-    public string[] greeting, eggHint, permission;
+    public string[] greeting, chestHint, eggHint, permission;
     public string[] currentSpeech;
 
     void Start() {

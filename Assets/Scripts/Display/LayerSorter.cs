@@ -18,7 +18,6 @@ public class LayerSorter : MonoBehaviour
         ypos = transform.position.y;
         if (gameObject.tag == "Player") {
             ypos -= .05f;
-            Debug.Log("player");
         }
         sorter = -(int)(ypos * 10.0);
         sprRenderer.sortingOrder = sorter;

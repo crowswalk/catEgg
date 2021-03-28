@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class PlayerTriggers : MonoBehaviour
 {
     SpriteRenderer sprRenderer; //Renderer of other object
-    public GameObject thoughtBubble, speechBubble, chestBubble, neighborBubble, baitBubble;
+    public GameObject thoughtBubble, speechBubble, chestBubble, neighborBubble, baitBubble, EndScene;
     PlayerDialogue dialogue;
-    int acornCount, eggCount, fishCount;
+    int acornCount, eggCount;
     public bool inDialogue, hasRod, hasBag, hasCoal, fishScare, fishLike;    
 
     public enum playerState {
-        catHungry, gateLocked, needKey, hasKey, needRod, needBait, needBag, permission, hasBait
+        catHungry, gateLocked, needKey, hasKey, needRod, needBait, needBag, permission, hasBait, hasFish
     }
 
     public playerState currentState;
@@ -25,7 +23,6 @@ public class PlayerTriggers : MonoBehaviour
         inDialogue = false;
         acornCount = 0;
         eggCount = 0;
-        fishCount = 0;
         hasRod = false;
         hasBag = false;
         hasCoal = false;
@@ -40,7 +37,7 @@ public class PlayerTriggers : MonoBehaviour
         sprRenderer = otherObj.GetComponent<SpriteRenderer>();
         if (otherObj.tag == "Bubble") { //Hint will be shown when player is close
                 if (otherObj.name == "ChestContents") { //if the player is near the chest, show chest contents
-                    if (currentState == playerState.needRod || currentState == playerState.needBag) {
+                    if (!hasBag) {
                         chestBubble.SetActive(true);
                     }
                 } else { //all other bubbles
@@ -83,6 +80,11 @@ public class PlayerTriggers : MonoBehaviour
                     dialogue.currentSpeech = dialogue.catTalk2;
                     currentState = playerState.hasKey;
                 }
+
+                if (currentState == playerState.hasFish) {
+                    resetDialogue();
+                    EndScene.SetActive(true);
+                }
             }
 
             if (currentState == playerState.hasKey && !inDialogue) { //after the player gets the key, change the cat's sprite
@@ -98,6 +100,10 @@ public class PlayerTriggers : MonoBehaviour
                 inDialogue = true;
                 neighborBubble.SetActive(true);
                 neighbor.speechIndex = 0;
+
+                if (currentState == playerState.needRod && !hasRod) {
+                    neighbor.currentSpeech = neighbor.chestHint;
+                }
 
                 if (currentState == playerState.needBait) { //after you try to fish without bait, player gives hint that you need eggs for bait
                     neighbor.currentSpeech = neighbor.eggHint;
@@ -122,7 +128,7 @@ public class PlayerTriggers : MonoBehaviour
 
                 if (currentState == playerState.hasBait && Input.GetMouseButtonDown(0)) { //player has bait
                     fishLike = true;
-                } else if (hasRod) { //player has rod and no bait
+                } else if (hasRod && currentState != playerState.hasFish) { //player has rod and no bait
                     resetDialogue();
                     fishScare = true;
                     currentState = playerState.needBait;
@@ -180,7 +186,7 @@ public class PlayerTriggers : MonoBehaviour
         }
 
         if (otherObj.tag == "FishCollider" && currentState == playerState.hasBait) { //NEAR FISH
-            fishCount++;
+            currentState = playerState.hasFish;
             Destroy(otherObj.transform.parent.gameObject);
         }
      }
