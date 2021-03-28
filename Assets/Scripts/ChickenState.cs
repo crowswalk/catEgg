@@ -66,10 +66,8 @@ public class ChickenState : MonoBehaviour
             default:
                 break;
             }
-
-            movement();
-            
-        }
+        movement();
+    }
 
     void layEgg() { //instantiate new egg
         Vector3 eggPos = new Vector3(transform.position.x + eggLayOffset, transform.position.y + eggLayOffset); //start egg at this location
