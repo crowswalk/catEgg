@@ -128,7 +128,7 @@ public class PlayerTriggers : MonoBehaviour
 
                 if (currentState == playerState.hasBait && Input.GetMouseButtonDown(0)) { //player has bait
                     fishLike = true;
-                } else if (hasRod && currentState != playerState.hasFish) { //player has rod and no bait
+                } else if (hasRod && currentState == playerState.needRod) { //player has rod and no bait
                     resetDialogue();
                     fishScare = true;
                     currentState = playerState.needBait;
