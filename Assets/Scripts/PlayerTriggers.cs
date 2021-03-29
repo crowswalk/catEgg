@@ -8,7 +8,8 @@ public class PlayerTriggers : MonoBehaviour
     public GameObject thoughtBubble, speechBubble, chestBubble, neighborBubble, baitBubble, EndScene;
     PlayerDialogue dialogue;
     int acornCount, eggCount;
-    public bool inDialogue, hasRod, hasBag, hasCoal, fishScare, fishLike;    
+    public bool inDialogue, hasRod, hasBag, hasCoal, fishScare, fishLike;
+    public Sprite coalSprite;
 
     public enum playerState {
         catHungry, gateLocked, needKey, hasKey, needRod, needBait, needBag, permission, hasBait, hasFish
@@ -143,6 +144,7 @@ public class PlayerTriggers : MonoBehaviour
             if (Input.GetMouseButtonDown(0)) {
                 hasCoal = true;
                 Debug.Log("Has Coal: " + hasCoal);
+                otherObj.transform.parent.GetComponent<SpriteRenderer>().sprite = coalSprite;
             }
         }
 

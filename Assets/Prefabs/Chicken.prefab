@@ -148,7 +148,9 @@ MonoBehaviour:
   - {fileID: -1642514149361250337, guid: 46c16da0911218a47b1f0e03ec74f893, type: 3}
   - {fileID: -6988750562667468047, guid: 46c16da0911218a47b1f0e03ec74f893, type: 3}
   egg: {fileID: 3461536363907406124, guid: a511448ba407e0045b059c36e2dd8665, type: 3}
+  leftEgg: {fileID: 2787058219912565225, guid: ace039cd2b4fd3942b8a4fb791715f5f, type: 3}
   eggLayOffset: 0.01
+  PlayerTransform: {fileID: 0}
   moveTimer: 100
   speed: 0.2
   framerate: 10
@@ -226,7 +228,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 10000
   m_Sprite: {fileID: 21300000, guid: 25d03bf65df78b945b1a86c72a553dda, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

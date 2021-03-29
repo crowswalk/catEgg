@@ -11,12 +11,12 @@ public class BackgroundSorter : MonoBehaviour
     void Start() {
         sprRenderer = GetComponent<SpriteRenderer>();
         sprRenderer.sortingOrder = sorter;
-        sorter = -(int)(transform.position.y * 10.0);
+        sorter = -(int)(transform.position.y * 100.0);
     }
 
         void FixedUpdate() {
         ypos = transform.position.y;
-        sorter = -(int)(ypos * 10.0);
+        sorter = -(int)(ypos * 100.0);
         sprRenderer.sortingOrder = sorter;
     }
 }

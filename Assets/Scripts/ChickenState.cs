@@ -12,8 +12,10 @@ public class ChickenState : MonoBehaviour
     public Sprite[] sideSprite = new Sprite[2];
 
     public GameObject egg;
+    public GameObject leftEgg;
     public float eggLayOffset;
     private bool laid; //whether egg has been laid yet
+    public Transform PlayerTransform;
 
     public int moveTimer;
     public float speed;
@@ -61,6 +63,7 @@ public class ChickenState : MonoBehaviour
                 bubbleRenderer.sprite = bubbleSprites[1];
                 if (!laid) {
                     layEgg();
+                    chickSprite.flipX = false;
                 }
                 break;
             default:
@@ -71,7 +74,11 @@ public class ChickenState : MonoBehaviour
 
     void layEgg() { //instantiate new egg
         Vector3 eggPos = new Vector3(transform.position.x + eggLayOffset, transform.position.y + eggLayOffset); //start egg at this location
-        GameObject newEgg = Instantiate(egg, eggPos, transform.rotation);
+        if (PlayerTransform.position.x <= transform.position.x) {
+            GameObject newEgg = Instantiate(egg, eggPos, transform.rotation);
+        } else {
+            GameObject newEgg = Instantiate(leftEgg, eggPos, transform.rotation);
+        }
         laid = true;
     }
 

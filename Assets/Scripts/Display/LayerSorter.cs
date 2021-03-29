@@ -11,15 +11,12 @@ public class LayerSorter : MonoBehaviour
     void Start() {
         sprRenderer = GetComponent<SpriteRenderer>();
         sprRenderer.sortingOrder = sorter;
-        sorter = -(int)(transform.position.y * 10.0);
+        sorter = -(int)(transform.position.y * 100.0);
     }
 
     void FixedUpdate() {
         ypos = transform.position.y;
-        if (gameObject.tag == "Player") {
-            ypos -= .05f;
-        }
-        sorter = -(int)(ypos * 10.0);
+        sorter = -(int)(ypos * 100.0);
         sprRenderer.sortingOrder = sorter;
     }
 }
