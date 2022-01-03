@@ -8,3 +8,4 @@
 		* To collect ACORNS, you need a SACK. The SACK is in the CHEST.
 	* For COAL, you need to ask your NEIGHBOR.
 	* Take the EGG and COAL to the furnace. It will return BAIT.
+# [Play Here](https://crowswalk.itch.io/egg-cat)
